@@ -1,0 +1,98 @@
+/* 全局样式 */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 背景图设置 */
+body {
+    font-family: "SimSun", "宋体", serif;
+    background-image: url('../images/background_2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 登录窗口样式 */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+    padding: 30px 40px;
+    border-radius: 8px; /* 圆角 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 阴影效果 */
+    width: 360px; /* 固定宽度 */
+}
+
+/* 标题样式 */
+.login-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 表单样式 */
+.login-form .form-group {
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 14px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: "SimSun", "宋体", serif; /* 输入框字体 */
+    font-size: 14px;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 0 2px rgba(102, 175, 233, 0.25);
+}
+
+/* 按钮样式 */
+.login-btn {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: "SimSun", "宋体", serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #3367d6;
+}
+
+/* 注册链接 */
+.register-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #4285f4;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

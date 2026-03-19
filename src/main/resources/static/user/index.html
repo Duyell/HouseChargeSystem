@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房地产信息系统 - 用户中心</title>
+    <link rel="stylesheet" href="../css/user-index.css">
+</head>
+<body>
+<div class="header">
+    <h1>房地产信息系统</h1>
+</div>
+
+<div class="nav">
+    <button class="nav-btn active" data-section="intro">公司简介</button>
+    <button class="nav-btn" data-section="search">查询广场</button>
+    <button class="nav-btn" data-section="buildings">房产看台</button>
+    <button class="logout-btn" style="float: right; margin-right: 20px;">退出登录</button>
+</div>
+
+<div class="container">
+    <!-- 公司简介部分 -->
+    <div id="intro" class="section active">
+        <h2 class="section-title">公司简介</h2>
+        <div class="company-intro">
+            <p>我公司成立于2000年，是一家专业从事房地产开发、销售和管理的综合性企业。经过二十余年的发展，已成为区域内知名的房地产开发商，拥有丰富的开发经验和优秀的管理团队。</p>
+
+            <div class="company-img">
+                <img src="../images/company.jpg" alt="公司办公大楼">
+            </div>
+
+            <p>公司始终坚持"以人为本，诚信经营"的理念，致力于为客户提供高品质的住宅和商业地产项目。我们注重建筑质量，关注居住体验，努力打造宜居、舒适、安全的生活空间。</p>
+
+            <p>截至目前，公司已开发建设多个精品楼盘，涵盖普通住宅、高档公寓、商业综合体等多种类型，总建筑面积超过500万平方米，为超过10万户家庭提供了优质的居住环境。</p>
+
+            <p>未来，公司将继续秉持创新精神，紧跟时代发展步伐，不断提升产品品质和服务水平，为城市建设和居民生活品质提升做出更大贡献。</p>
+
+            <p>联系电话：010-12345678</p>
+
+            <p>地址：北京市海淀区西二旗北路10号</p>
+        </div>
+    </div>
+
+    <!-- 查询广场部分 -->
+    <div id="search" class="section">
+        <h2 class="section-title">房产查询</h2>
+
+        <div class="filter-group">
+            <div class="filter-item">
+                <label for="propertyType">房产类型</label>
+                <select id="propertyType">
+                    <option value="">全部</option>
+                    <option value="一室一厅">一室一厅</option>
+                    <option value="两室一厅">两室一厅</option>
+                    <option value="两室两厅">两室两厅</option>
+                    <option value="三室一厅">三室一厅</option>
+                    <option value="三室两厅">三室两厅</option>
+                    <option value="四室及以上">四室及以上</option>
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <label for="balconyDirection">阳台方向</label>
+                <select id="balconyDirection">
+                    <option value="">全部</option>
+                    <option value="朝南">朝南</option>
+                    <option value="朝北">朝北</option>
+                    <option value="朝东">朝东</option>
+                    <option value="朝西">朝西</option>
+                    <option value="东南">东南</option>
+                    <option value="西南">西南</option>
+                    <option value="东北">东北</option>
+                    <option value="西北">西北</option>
+                </select>
+            </div>
+
+            <div class="filter-item">
+                <label>价格范围(万元)</label>
+                <div class="range-inputs">
+                    <label for="minPrice"></label><input type="number" id="minPrice" placeholder="最低">
+                    <label for="maxPrice"></label><input type="number" id="maxPrice" placeholder="最高">
+                </div>
+            </div>
+
+            <div class="filter-item">
+                <label>建筑面积(㎡)</label>
+                <div class="range-inputs">
+                    <label for="minBuildArea"></label><input type="number" id="minBuildArea" placeholder="最小">
+                    <label for="maxBuildArea"></label><input type="number" id="maxBuildArea" placeholder="最大">
+                </div>
+            </div>
+
+            <div class="filter-item">
+                <label>使用面积(㎡)</label>
+                <div class="range-inputs">
+                    <label for="minUsableArea"></label><input type="number" id="minUsableArea" placeholder="最小">
+                    <label for="maxUsableArea"></label><input type="number" id="maxUsableArea" placeholder="最大">
+                </div>
+            </div>
+
+            <div class="filter-item">
+                <label>楼层范围</label>
+                <div class="range-inputs">
+                    <label for="minFloor"></label><input type="number" id="minFloor" placeholder="最低">
+                    <label for="maxFloor"></label><input type="number" id="maxFloor" placeholder="最高">
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn btn-primary" id="searchBtn">查询</button>
+            <button class="btn btn-reset" id="resetBtn">重置</button>
+        </div>
+
+        <div id="propertyResult">
+            <table class="property-table">
+                <thead>
+                <tr>
+                    <th>房产编号</th>
+                    <th>房产类型</th>
+                    <th>阳台方向</th>
+                    <th>价格(万元)</th>
+                    <th>建筑面积(㎡)</th>
+                    <th>楼层</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="propertyTableBody">
+                <!-- 房产数据将通过JavaScript动态加载 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 房产看台部分 -->
+    <div id="buildings" class="section">
+        <h2 class="section-title">楼盘信息</h2>
+        <div class="building-list" id="buildingList">
+            <!-- 楼盘数据将通过JavaScript动态加载 -->
+        </div>
+    </div>
+</div>
+
+<!-- 房产详情弹窗 -->
+<div class="modal" id="propertyModal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="detail-header">
+            <h3 class="detail-title" id="modalTitle"></h3>
+        </div>
+        <div class="detail-content">
+            <div class="detail-img">
+                <img id="modalImg" src="" alt="户型图">
+            </div>
+            <div class="detail-info" id="modalInfo">
+                <!-- 详情信息将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src = "../js/user-script.js"></script>
+</body>
+</html>

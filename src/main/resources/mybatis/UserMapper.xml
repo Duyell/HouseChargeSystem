@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.duyell.mapper.UserMapper">
+    <resultMap id="UserMap" type="com.duyell.model.User">
+        <id column="user_id" property="userId"/>
+        <result column="name" property="userName"/>
+        <result column="phone" property="userPhone"/>
+        <result column="id_card" property="userCard"/>
+        <result column="password" property="userPassword"/>
+        <result column="role" property="userRole"/>
+    </resultMap>
+</mapper>

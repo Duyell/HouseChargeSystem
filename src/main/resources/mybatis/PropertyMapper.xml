@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.duyell.mapper.PropertyMapper">
+    <resultMap id="PropertyMap" type="com.duyell.model.Property">
+        <id column="property_id" property="propertyId"/>
+        <result column="property_type" property="propertyType"/>
+        <result column="balcony_direction" property="balconyDirection"/>
+        <result column="property_price" property="propertyPrice"/>
+        <result column="building_area" property="buildingArea"/>
+        <result column="usable_area" property="usableArea"/>
+        <result column="floor" property="floor"/>
+        <result column="house_type_img" property="houseTypeImg"/>
+        <result column="room_status" property="roomStatus"/>
+        <result column="building_id" property="buildingId"/>
+    </resultMap>
+
+    <select id="selectByCondition" parameterType="com.duyell.model.PropertyQuery" resultMap="PropertyMap">
+        SELECT * FROM property
+        <where>
+            <!-- 房产类型 -->
+            <if test="propertyType != null and propertyType != ''">
+                AND property_type = #{propertyType}
+            </if>
+            <!-- 阳台方向 -->
+            <if test="balconyDirection != null and balconyDirection != ''">
+                AND balcony_direction = #{balconyDirection}
+            </if>
+            <!-- 价格范围 -->
+            <if test="minPrice != null">
+                AND property_price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND property_price &lt;= #{maxPrice}
+            </if>
+            <!-- 建筑面积范围 -->
+            <if test="minBuildArea != null">
+                AND building_area &gt;= #{minBuildArea}
+            </if>
+            <if test="maxBuildArea != null">
+                AND building_area &lt;= #{maxBuildArea}
+            </if>
+            <!-- 可用面积范围 -->
+            <if test="minUsableArea != null">
+                AND usable_area &gt;= #{minUsableArea}
+            </if>
+            <if test="maxUsableArea != null">
+                AND usable_area &lt;= #{maxUsableArea}
+            </if>
+            <!-- 楼层范围 -->
+            <if test="minFloor != null">
+                AND floor &gt;= #{minFloor}
+            </if>
+            <if test="maxFloor != null">
+                AND floor &lt;= #{maxFloor}
+            </if>
+        </where>
+    </select>
+</mapper>

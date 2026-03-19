@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.duyell.mapper.BuildingMapper">
+    <resultMap id="BuildingMap" type="com.duyell.model.Building">
+        <id column="building_id" property="buildingId"/>
+        <result column="building_name" property="buildingName"/>
+        <result column="building_address" property="buildingAddress"/>
+        <result column="building_feature" property="buildingFeature"/>
+    </resultMap>
+</mapper>

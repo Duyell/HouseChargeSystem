@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="css/login-style.css">
+</head>
+<body>
+<!-- 登录窗口 -->
+<div class="login-container">
+    <h2 class="login-title">用户登录</h2>
+    <form class="login-form">
+        <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" placeholder="请输入手机号" required>
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" id="password" placeholder="请输入密码" required>
+        </div>
+        <button type="submit" class="login-btn">登录</button>
+        <div class="register-link">
+            还没有账号？<a href="register.html">立即注册</a>
+        </div>
+    </form>
+</div>
+<script src ="js/login-script.js"></script>
+</body>
+</html>

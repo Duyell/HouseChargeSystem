@@ -1,0 +1,42 @@
+#file: noinspection SpellCheckingInspection
+spring:
+  # 数据库连接配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/housecharge?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  servlet:
+   encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+jwt:
+  #jwt配置
+  secret-key: HuangYuChengHouseChargeSystem13618659945Version2025
+  expiration-time: 7200000
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  type-aliases-package: com.duyell
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 日志配置
+logging:
+  # 日志级别：root为默认级别，可单独指定包的级别
+  level:
+    root: INFO # 全局日志级别
+    com.duyell.mapper: DEBUG # Mapper包的日志级别
+    com.duyell.aspect: INFO # AOP切面的日志级别
+  # 日志输出到文件的配置
+  file:
+    name: logs/housecharge.log # 日志文件路径
+  # 日志滚动配置
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB # 单个日志文件最大100MB
+      max-history: 30 # 保留30天的日志
+      total-size-cap: 1GB # 日志总大小上限1GB
