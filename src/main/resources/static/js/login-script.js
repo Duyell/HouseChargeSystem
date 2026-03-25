@@ -46,6 +46,8 @@ loginForm.addEventListener('submit', async function(e) {
             localStorage.setItem('userId', userId);
             localStorage.setItem('role', role);
 
+            document.cookie = `jwt=${token}; path=/; expires=${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)}; secure; samesite=strict}`;
+
             // 根据角色跳转到不同页面（示例）
             if (role === '1') {
                 window.location.href = 'user/index.html'; // C端用户首页
@@ -61,3 +63,4 @@ loginForm.addEventListener('submit', async function(e) {
         alert('网络错误，请稍后重试');
     }
 });
+

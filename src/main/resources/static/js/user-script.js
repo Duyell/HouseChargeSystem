@@ -144,11 +144,11 @@ async function searchProperties() {
         });
 
         // 发送请求
-        const response = await fetch(url);
+        const response = await fetchWithToken(url);
         const properties = await response.json();
 
         // 获取当前用户的预订记录
-        const reservationsResponse = await fetch(`/reservation/reservationByUser?userId=${localStorage.getItem('userId')}`);
+        const reservationsResponse = await fetchWithToken(`/reservation/reservationByUser?userId=${localStorage.getItem('userId')}`);
         const reservations = await reservationsResponse.json();
 
         // 传入预订记录到显示函数
@@ -208,7 +208,7 @@ function displayProperties(properties,reservations) {
                 try {
                     // 1. 调用后端预订接口，保存预订记录
                     const userId = localStorage.getItem('userId'); // 从本地存储获取当前用户ID
-                    const reservationResponse = await fetch('/reservation/addReservation', {
+                    const reservationResponse = await fetchWithToken('/reservation/addReservation', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ function displayProperties(properties,reservations) {
                     }
 
                     // 2. 调用后端接口，修改房产状态为"已售"（roomStatus=true）
-                    const updateResponse = await fetch(`/property/updateStatus/${propertyId}`, {
+                    const updateResponse = await fetchWithToken(`/property/updateStatus/${propertyId}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -257,7 +257,7 @@ function displayProperties(properties,reservations) {
                     const userId = localStorage.getItem('userId');
 
                     // 1. 删除预订记录
-                    const deleteResponse = await fetch(`/reservation/deleteReservation`, {
+                    const deleteResponse = await fetchWithToken(`/reservation/deleteReservation`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -273,7 +273,7 @@ function displayProperties(properties,reservations) {
                     }
 
                     // 2. 更新房产状态为可预订
-                    const updateResponse = await fetch(`/property/updateStatus/${propertyId}`, {
+                    const updateResponse = await fetchWithToken(`/property/updateStatus/${propertyId}`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -300,13 +300,13 @@ function displayProperties(properties,reservations) {
 // 显示房产详情
 async function showPropertyDetail(propertyId) {
     try {
-        const response = await fetch(`/property/${propertyId}`);
+        const response = await fetchWithToken(`/property/${propertyId}`);
         const property = await response.json();
 
         // 获取关联的楼盘信息
         let buildingName = '未知楼盘';
         try {
-            const buildingResponse = await fetch('/building/allBuildings');
+            const buildingResponse = await fetchWithToken('/building/allBuildings');
             const buildings = await buildingResponse.json();
             const building = buildings.find(b => b.buildingId === property.buildingId);
             if (building) {
@@ -375,14 +375,14 @@ async function showPropertyDetail(propertyId) {
 async function loadBuildings() {
     try {
         // 获取所有楼盘
-        const buildingResponse = await fetch('/building/allBuildings');
+        const buildingResponse = await fetchWithToken('/building/allBuildings');
         const buildings = await buildingResponse.json();
 
         // 获取所有房产和预订信息
-        const propertyResponse = await fetch('/property/allProperties');
+        const propertyResponse = await fetchWithToken('/property/allProperties');
         const properties = await propertyResponse.json();
 
-        const reservationResponse = await fetch('/reservation/allReservation');
+        const reservationResponse = await fetchWithToken('/reservation/allReservation');
         const reservations = await reservationResponse.json();
 
         // 显示楼盘列表
@@ -437,7 +437,29 @@ document.querySelector('.logout-btn').addEventListener('click', function() {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('role');
+
+
         // 跳转到登录页
         window.location.href = '../login.html';
     }
 });
+
+// ========== 新增：全局带Token的fetch封装（核心修复） ==========
+async function fetchWithToken(url, options = {}) {
+    // 从本地取登录时保存的token
+    const token = localStorage.getItem('token');
+
+    if(!token){
+        window.location.href = '../login.html';
+        return;
+    }
+    // 合并请求头，自动带上token（和后端拦截器约定的字段一致）
+    options.headers = {
+        'Content-Type': 'application/json', // 保持原有Content-Type
+        'token': token , // 关键：添加token请求头
+        ...options.headers // 保留原有请求头（比如PUT/POST的Content-Type）
+    };
+    // 发送请求并返回响应
+
+    return fetch(url, options);
+}

@@ -1,0 +1,49 @@
+2026-01-18 13:02:50.463 [main] INFO  com.duyell.WebStart - Starting WebStart using Java 21.0.4 with PID 4588 (D:\work\数据库实验\HouseChargeSystem\target\classes started by 53473 in D:\work\数据库实验\HouseChargeSystem)
+2026-01-18 13:02:50.576 [main] INFO  com.duyell.WebStart - No active profile set, falling back to 1 default profile: "default"
+2026-01-18 13:02:59.925 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-01-18 13:02:59.993 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-01-18 13:03:00.026 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-01-18 13:03:00.027 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-01-18 13:03:00.214 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-01-18 13:03:00.217 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 9329 ms
+2026-01-18 13:03:04.434 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-01-18 13:03:04.559 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-01-18 13:03:04.590 [main] INFO  com.duyell.WebStart - Started WebStart in 15.975 seconds (process running for 17.76)
+2026-01-18 13:03:18.691 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-18 13:03:18.692 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-01-18 13:03:18.695 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-01-18 13:03:25.121 [http-nio-8080-exec-6] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectByPhone，参数：[13800138000]
+2026-01-18 13:03:25.148 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-01-18 13:03:25.536 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1793088d
+2026-01-18 13:03:25.540 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-01-18 13:03:25.572 [http-nio-8080-exec-6] DEBUG com.duyell.mapper.UserMapper.selectByPhone - ==>  Preparing: SELECT * FROM user WHERE phone = ?
+2026-01-18 13:03:25.671 [http-nio-8080-exec-6] DEBUG com.duyell.mapper.UserMapper.selectByPhone - ==> Parameters: 13800138000(String)
+2026-01-18 13:03:25.776 [http-nio-8080-exec-6] DEBUG com.duyell.mapper.UserMapper.selectByPhone - <==      Total: 1
+2026-01-18 13:03:25.796 [http-nio-8080-exec-6] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：User(userId=U001, name=张三, phone=13800138000, idCard=110101199001011234, password=$2a$10$UnJLL9mXRiuxqyKz9tV5guWYwB3JlhD1PZ/Z7.4jr7jkx/d6QjhXu, role=1)
+2026-01-18 13:03:31.246 [http-nio-8080-exec-1] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectByCondition，参数：[PropertyQuery(propertyType=null, balconyDirection=null, minPrice=null, maxPrice=null, minBuildArea=null, maxBuildArea=null, minUsableArea=null, maxUsableArea=null, minFloor=null, maxFloor=null)]
+2026-01-18 13:03:31.307 [http-nio-8080-exec-1] DEBUG c.duyell.mapper.PropertyMapper.selectByCondition - ==>  Preparing: SELECT * FROM property
+2026-01-18 13:03:31.307 [http-nio-8080-exec-1] DEBUG c.duyell.mapper.PropertyMapper.selectByCondition - ==> Parameters: 
+2026-01-18 13:03:31.321 [http-nio-8080-exec-1] DEBUG c.duyell.mapper.PropertyMapper.selectByCondition - <==      Total: 5
+2026-01-18 13:03:31.323 [http-nio-8080-exec-1] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：[Property(propertyId=P001, propertyType=两室一厅, balconyDirection=朝南, propertyPrice=5000000.0, buildingArea=80.0, usableArea=65.0, floor=10, houseTypeImg=images/2R1T.jpg, roomStatus=false, buildingId=B001), Property(propertyId=P002, propertyType=三室一厅, balconyDirection=朝北, propertyPrice=6500000.0, buildingArea=100.0, usableArea=85.0, floor=15, houseTypeImg=images/3R1T.jpg, roomStatus=true, buildingId=B001), Property(propertyId=P003, propertyType=一室一厅, balconyDirection=朝南, propertyPrice=3800000.0, buildingArea=60.0, usableArea=50.0, floor=8, houseTypeImg=images/1R1T.jpg, roomStatus=false, buildingId=B001), Property(propertyId=P004, propertyType=三室两厅, balconyDirection=东北, propertyPrice=6000000.0, buildingArea=300.0, usableArea=268.0, floor=8, houseTypeImg=images/3R2T.jpg, roomStatus=false, buildingId=B002), Property(propertyId=P005, propertyType=两室两厅, balconyDirection=东南, propertyPrice=2000000.0, buildingArea=80.0, usableArea=60.0, floor=12, houseTypeImg=images/2R2T.jpg, roomStatus=true, buildingId=B002)]
+2026-01-18 13:03:31.349 [http-nio-8080-exec-2] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectByUser，参数：[U001]
+2026-01-18 13:03:31.350 [http-nio-8080-exec-2] DEBUG com.duyell.mapper.ReservationMapper.selectByUser - ==>  Preparing: SELECT * FROM reservation WHERE user_id = ?
+2026-01-18 13:03:31.351 [http-nio-8080-exec-2] DEBUG com.duyell.mapper.ReservationMapper.selectByUser - ==> Parameters: U001(String)
+2026-01-18 13:03:31.361 [http-nio-8080-exec-2] DEBUG com.duyell.mapper.ReservationMapper.selectByUser - <==      Total: 1
+2026-01-18 13:03:31.361 [http-nio-8080-exec-2] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：[Reservation(reservationId=R004, userId=U001, propertyId=P005, reservationTime=2025-12-17T16:50:46, userName=null, propertyType=null)]
+2026-01-18 13:03:36.460 [http-nio-8080-exec-3] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectAll，参数：[]
+2026-01-18 13:03:36.461 [http-nio-8080-exec-3] DEBUG com.duyell.mapper.BuildingMapper.selectAll - ==>  Preparing: SELECT * FROM building
+2026-01-18 13:03:36.463 [http-nio-8080-exec-3] DEBUG com.duyell.mapper.BuildingMapper.selectAll - ==> Parameters: 
+2026-01-18 13:03:36.473 [http-nio-8080-exec-3] DEBUG com.duyell.mapper.BuildingMapper.selectAll - <==      Total: 4
+2026-01-18 13:03:36.474 [http-nio-8080-exec-3] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：[Building(buildingId=B001, buildingName=宜居花园, buildingAddress=北京市朝阳区XX路, buildingFeature=地铁旁+绿化率30%), Building(buildingId=B002, buildingName=春日柳园, buildingAddress=光谷路17号, buildingFeature=靠近光谷第一公园，景色优美，环境清新), Building(buildingId=B003, buildingName=秋日枫园, buildingAddress=江北路96号, buildingFeature=靠近xxx故居，周边烟火气浓郁), Building(buildingId=B004, buildingName=楼盘2号, buildingAddress=xx路xx号, buildingFeature=环境优化宜居)]
+2026-01-18 13:03:36.482 [http-nio-8080-exec-4] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectAll，参数：[]
+2026-01-18 13:03:36.483 [http-nio-8080-exec-4] DEBUG com.duyell.mapper.PropertyMapper.selectAll - ==>  Preparing: SELECT * FROM property
+2026-01-18 13:03:36.483 [http-nio-8080-exec-4] DEBUG com.duyell.mapper.PropertyMapper.selectAll - ==> Parameters: 
+2026-01-18 13:03:36.489 [http-nio-8080-exec-4] DEBUG com.duyell.mapper.PropertyMapper.selectAll - <==      Total: 5
+2026-01-18 13:03:36.489 [http-nio-8080-exec-4] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：[Property(propertyId=P001, propertyType=两室一厅, balconyDirection=朝南, propertyPrice=5000000.0, buildingArea=80.0, usableArea=65.0, floor=10, houseTypeImg=images/2R1T.jpg, roomStatus=false, buildingId=B001), Property(propertyId=P002, propertyType=三室一厅, balconyDirection=朝北, propertyPrice=6500000.0, buildingArea=100.0, usableArea=85.0, floor=15, houseTypeImg=images/3R1T.jpg, roomStatus=true, buildingId=B001), Property(propertyId=P003, propertyType=一室一厅, balconyDirection=朝南, propertyPrice=3800000.0, buildingArea=60.0, usableArea=50.0, floor=8, houseTypeImg=images/1R1T.jpg, roomStatus=false, buildingId=B001), Property(propertyId=P004, propertyType=三室两厅, balconyDirection=东北, propertyPrice=6000000.0, buildingArea=300.0, usableArea=268.0, floor=8, houseTypeImg=images/3R2T.jpg, roomStatus=false, buildingId=B002), Property(propertyId=P005, propertyType=两室两厅, balconyDirection=东南, propertyPrice=2000000.0, buildingArea=80.0, usableArea=60.0, floor=12, houseTypeImg=images/2R2T.jpg, roomStatus=true, buildingId=B002)]
+2026-01-18 13:03:36.499 [http-nio-8080-exec-5] INFO  com.duyell.util.DatabaseLogAspect - 执行数据库操作：selectAll，参数：[]
+2026-01-18 13:03:36.500 [http-nio-8080-exec-5] DEBUG com.duyell.mapper.ReservationMapper.selectAll - ==>  Preparing: SELECT * FROM reservation
+2026-01-18 13:03:36.501 [http-nio-8080-exec-5] DEBUG com.duyell.mapper.ReservationMapper.selectAll - ==> Parameters: 
+2026-01-18 13:03:36.504 [http-nio-8080-exec-5] DEBUG com.duyell.mapper.ReservationMapper.selectAll - <==      Total: 2
+2026-01-18 13:03:36.505 [http-nio-8080-exec-5] INFO  com.duyell.util.DatabaseLogAspect - 数据库操作结果：[Reservation(reservationId=R003, userId=U003, propertyId=P002, reservationTime=2025-12-16T23:07:21, userName=null, propertyType=null), Reservation(reservationId=R004, userId=U001, propertyId=P005, reservationTime=2025-12-17T16:50:46, userName=null, propertyType=null)]
+2026-01-18 13:03:55.597 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-01-18 13:03:55.601 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

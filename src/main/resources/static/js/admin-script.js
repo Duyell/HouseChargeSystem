@@ -144,7 +144,7 @@ async function searchProperties() {
         });
 
         // 发送请求
-        const response = await fetch(url);
+        const response = await fetchWithToken(url);
         const properties = await response.json();
 
         // 显示结果
@@ -203,7 +203,7 @@ function displayProperties(properties) {
 // 加载房产信息到编辑表单
 async function loadPropertyForEdit(propertyId) {
     try {
-        const response = await fetch(`/property/${propertyId}`);
+        const response = await fetchWithToken(`/property/${propertyId}`);
         const property = await response.json();
 
         document.getElementById('editPropertyId').value = property.propertyId;
@@ -299,7 +299,7 @@ document.getElementById('editPropertyForm').addEventListener('submit', async fun
 
     try {
         // 发送更新请求
-        const response = await fetch('/property/updateProperty', {
+        const response = await fetchWithToken('/property/updateProperty', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -326,13 +326,13 @@ document.getElementById('editPropertyForm').addEventListener('submit', async fun
 // 显示房产详情
 async function showPropertyDetail(propertyId) {
     try {
-        const response = await fetch(`/property/${propertyId}`);
+        const response = await fetchWithToken(`/property/${propertyId}`);
         const property = await response.json();
 
         // 获取关联的楼盘信息
         let buildingName = '未知楼盘';
         try {
-            const buildingResponse = await fetch('/building/allBuildings');
+            const buildingResponse = await fetchWithToken('/building/allBuildings');
             const buildings = await buildingResponse.json();
             const building = buildings.find(b => b.buildingId === property.buildingId);
             if (building) {
@@ -399,14 +399,14 @@ async function showPropertyDetail(propertyId) {
 async function loadBuildings() {
     try {
         // 获取所有楼盘
-        const buildingResponse = await fetch('/building/allBuildings');
+        const buildingResponse = await fetchWithToken('/building/allBuildings');
         const buildings = await buildingResponse.json();
 
         // 获取所有房产和预订信息
-        const propertyResponse = await fetch('/property/allProperties');
+        const propertyResponse = await fetchWithToken('/property/allProperties');
         const properties = await propertyResponse.json();
 
-        const reservationResponse = await fetch('/reservation/allReservation');
+        const reservationResponse = await fetchWithToken('/reservation/allReservation');
         const reservations = await reservationResponse.json();
 
         // 显示楼盘列表
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             try {
-                const response = await fetch('/building/addBuilding', {
+                const response = await fetchWithToken('/building/addBuilding', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
@@ -685,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 发送数据到后端
             console.log('表单提交触发'); // 检查控制台是否输出
-            fetch('/property/addProperty', {
+            fetchWithToken('/property/addProperty', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 从后端获取楼盘列表，并把楼盘名字并填充到下拉框
         const buildingSelect = document.getElementById('buildingId');
         buildingSelect.innerHTML = '';
-        const buildingsResponse = fetch('/building/allBuildings');
+        const buildingsResponse = fetchWithToken('/building/allBuildings');
         buildingsResponse.then(response => response.json()).then(buildings => {
             buildings.forEach(building => {
                 const option = document.createElement('option');
@@ -741,7 +741,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 页面加载时获取所有楼盘信息
 async function loadEditBuildings() {
     try {
-        const response = await fetch('/building/allBuildings');
+        const response = await fetchWithToken('/building/allBuildings');
         const buildings = await response.json();
 
         const buildingSelect = document.getElementById('editBuildingId');
@@ -759,6 +759,25 @@ async function loadEditBuildings() {
 // 在页面加载完成后调用
 window.addEventListener('load', loadEditBuildings);
 
+// ========== 新增：全局带Token的fetch封装（核心修复） ==========
+async function fetchWithToken(url, options = {}) {
+    // 从本地取登录时保存的token
+    const token = localStorage.getItem('token');
+
+    if(!token){
+        window.location.href = '../login.html';
+        return;
+    }
+    // 合并请求头，自动带上token（和后端拦截器约定的字段一致）
+    options.headers = {
+        'Content-Type': 'application/json', // 保持原有Content-Type
+        'token': token , // 关键：添加token请求头
+        ...options.headers // 保留原有请求头（比如PUT/POST的Content-Type）
+    };
+    // 发送请求并返回响应
+
+    return fetch(url, options);
+}
 
 
 
